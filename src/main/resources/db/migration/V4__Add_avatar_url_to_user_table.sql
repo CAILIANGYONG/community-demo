@@ -1,0 +1,1 @@
+ALTER TABLE USER ADD avartar_url varchar(100) NULL;
