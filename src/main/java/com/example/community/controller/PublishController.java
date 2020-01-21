@@ -21,8 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 public class PublishController {
     @Autowired
     private QuessionMapper quessionMapper;
-    @Autowired
-    private UserMapper userMapper;
+
     @GetMapping("/publish")
     public String publish(){
 
@@ -52,20 +51,7 @@ public class PublishController {
             return "publish";
         }   //这是前后端都需要验证事情  前端提交的时候可能会绕过这个
 
-        User user=null;
-        Cookie[] cookies = request.getCookies();
-        if(cookies !=null && cookies.length !=0)//判断cookie  非空
-        for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                user=userMapper.findByToken(token);
-                if(user!=null){
-                    request.getSession().setAttribute("user",user);
-                }
-                break;
-            }
-
-        }
+        User user =(User) request.getSession().getAttribute("user");
         if(user == null){
             model.addAttribute("error","用户为登陆");
             return "publish";
