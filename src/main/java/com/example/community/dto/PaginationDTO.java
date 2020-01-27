@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Data
 public class PaginationDTO {
-    private List<QuestionDTO> questions;
+    private List<QuestionDTO> questions; //找到了     问题列表
     private  boolean showPrevious;//全是旗标   秒啊
     private  boolean showFisrtPage;
     private  boolean showNext;

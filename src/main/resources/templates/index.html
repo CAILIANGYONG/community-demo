@@ -9,6 +9,18 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </head>
+<!--用来本地验证登录状态-->
+<script type="application/javascript">
+    window.onload =function () {
+            var closable =window.localStorage.getItem("closable");
+            if(closable == "true")
+            {
+                window.close();
+                window,localStorage.removeItem("closable");
+            }
+    }
+
+</script>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid main">
@@ -24,7 +36,9 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <h4 class="media-heading" >
+                        <a th:href="@{'/question/'+${question.id}}" th:text="${question.title}"></a>
+                    </h4>
                    <span th:text="${question.description}"></span> <br>
                     <span class="test-desc"> <span th:text="${question.commentCount}"></span> 个回复 .
                      <span th:text="${question.viewCount}"></span>  次浏览 .
