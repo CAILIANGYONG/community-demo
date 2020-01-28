@@ -1,9 +1,9 @@
 package com.example.community.controller;
 
 
-import com.example.community.dto.CommentCreateDTO;
 import com.example.community.dto.QuestionDTO;
 import com.example.community.dto.commentDTO;
+import com.example.community.enums.CommentTypeEnum;
 import com.example.community.service.CommentService;
 import com.example.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +21,14 @@ public class QuestionController {
         @Autowired
         private CommentService commentService;
 
-        @GetMapping("/question/{id}")
-        public String question(@PathVariable(name ="id") Long id,
-                               Model model
-                               )
-        {
-            QuestionDTO questionDTO= questionService.getById(id);
-         List<commentDTO> comments = commentService.listByQuestionId(id);
-            //累加阅读数
-            questionService.incView(id);  //model 负责丢到页面上
-            model.addAttribute("question",questionDTO);
-            model.addAttribute("comments",comments);
-            return  "question";
-        }
+    @GetMapping("/question/{id}")
+    public String question(@PathVariable(name = "id") Long id, Model model) {
+        QuestionDTO questionDTO = questionService.getById(id);
+        List<commentDTO> comments = commentService.listByTargetId(id, CommentTypeEnum.QUESTION);
+        //累加阅读数
+        questionService.incView(id);
+        model.addAttribute("question", questionDTO);
+        model.addAttribute("comments", comments);
+        return "question";
+    }
 }
