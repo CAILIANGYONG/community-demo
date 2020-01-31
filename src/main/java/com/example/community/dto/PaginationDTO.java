@@ -5,8 +5,8 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 @Data
-public class PaginationDTO {
-    private List<QuestionDTO> questions; //找到了     问题列表
+public class PaginationDTO<T> {
+    private List<T> data; //找到了     问题列表    任意类型，可能是问题，也可能是通知
     private  boolean showPrevious;//全是旗标   秒啊
     private  boolean showFisrtPage;
     private  boolean showNext;

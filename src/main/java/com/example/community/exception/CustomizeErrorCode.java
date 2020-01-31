@@ -8,7 +8,9 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode{
    SYS_ERROR(2004,"服务器冒烟了，等等再试试？"),
    TYPE_PARM_WRONG(2005,"评论错误或不存在"),
     COMMENT_NOT_FOUND(2006,"回复的评论不存在了，要不要换一个试试？"),
-    CONTNET_IS_EMPTY(2007,"输入内容不能为空")
+    CONTNET_IS_EMPTY(2007,"输入内容不能为空"),
+    READ_NOTIFICATION_FAIL(2008,"不能偷看别人的信息哦"),
+    NOTIFICATION_NOT_FOUND(2009,"消息神隐了？")
     ;
 
     @Override

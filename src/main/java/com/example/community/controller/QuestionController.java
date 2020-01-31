@@ -21,14 +21,19 @@ public class QuestionController {
         @Autowired
         private CommentService commentService;
 
-    @GetMapping("/question/{id}")
-    public String question(@PathVariable(name = "id") Long id, Model model) {
-        QuestionDTO questionDTO = questionService.getById(id);
-        List<commentDTO> comments = commentService.listByTargetId(id, CommentTypeEnum.QUESTION);
-        //累加阅读数
-        questionService.incView(id);
-        model.addAttribute("question", questionDTO);
-        model.addAttribute("comments", comments);
-        return "question";
-    }
+        @GetMapping("/question/{id}")
+        public String question(@PathVariable(name ="id") Long id,
+                               Model model
+                               )
+        {
+            QuestionDTO questionDTO= questionService.getById(id);
+            List<QuestionDTO> relateQuestions =questionService.selectRelate(questionDTO);
+         List<commentDTO> comments = commentService.listByTargetId(id, CommentTypeEnum.QUESTION);
+            //累加阅读数
+            questionService.incView(id);  //model 负责丢到页面上
+            model.addAttribute("question",questionDTO);
+            model.addAttribute("comments",comments);
+            model.addAttribute("relateQuestions",relateQuestions);   //数据放进来了  接下来修改页面
+            return  "question";
+        }
 }

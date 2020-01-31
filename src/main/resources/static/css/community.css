@@ -30,6 +30,34 @@ body{
 {
     margin-top: 25px;
 }
+.quesion-tag
+{
+    margin-right: 5px;
+}
+.question-ralated
+{
+    line-height: 20px;
+    font-size: 15px;
+    list-style: none;
+    padding-left: 0;
+}
+.question-image
+{
+    width: 288px;
+}
+.publish-tag-tab
+{
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+.publish-tag-tab .label-info
+{
+    white-space: normal;
+    margin: 5px 5px;
+    display: inline-block;
+}
+
 .community-menu{
     font-size: 13px;
     color:#999;
