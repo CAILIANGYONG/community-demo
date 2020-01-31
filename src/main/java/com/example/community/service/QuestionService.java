@@ -34,7 +34,16 @@ public class QuestionService {
     private QuestionExtMapper questionExtMapper;
 
     //主页显示
-    public PaginationDTO list(Integer page, Integer size) {
+    public PaginationDTO list(String search,Integer page, Integer size) {
+
+        if(StringUtils.isNotBlank(search))
+        {
+            String[] tags = StringUtils.split(search, " ");
+          search = Arrays.stream(tags).collect(Collectors.joining("|"));
+
+        }
+
+
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
         Integer totalCount = (int )questionMapper.countByExample(new QuestionExample());//拿到用户总条数

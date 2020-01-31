@@ -60,6 +60,7 @@ public class CommentService {
                 throw  new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
 
             }
+            comment.setCommentCount(0);
             commentMapper.insert(comment);
 
             Comment parentComment = new Comment();
@@ -84,6 +85,10 @@ public class CommentService {
     }
 
     private void createNotify(Comment comment, Long reciver, String notifierName, String outerTitle, NotificationTypeEnum notificationType,Long outerId) {
+        if(reciver == comment.getCommentator()) //自己回复自己不用加提示， 居然可以
+        {
+            return;
+        }
         Notification notification = new Notification();
         notification.setGmtCreate(System.currentTimeMillis());
         notification.setType(notificationType.getType());
