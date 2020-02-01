@@ -2,6 +2,7 @@ package com.example.community.service;
 
 import com.example.community.dto.PaginationDTO;
 import com.example.community.dto.QuestionDTO;
+import com.example.community.dto.QuestionQueryDTO;
 import com.example.community.exception.CustomizeErrorCode;
 import com.example.community.exception.CustomizeException;
 import com.example.community.mapper.QuessionMapper;
@@ -46,7 +47,10 @@ public class QuestionService {
 
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
-        Integer totalCount = (int )questionMapper.countByExample(new QuestionExample());//拿到用户总条数
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();  //拿到用户条数
+        questionQueryDTO.setSearch(search);
+
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
         if(totalCount % size==0){
             totalPage = totalCount/size;
         }
@@ -59,12 +63,15 @@ public class QuestionService {
         }
         if(page > totalPage){
             page=totalPage;
-        }//siez *(page-1)
+        }
         paginationDTO.setPagination(totalPage,page);
         Integer offset = size *(page-1);
+        //siez *(page-1)
         QuestionExample questionExample = new QuestionExample();
         questionExample.setOrderByClause("gmt_create desc");
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(questionExample, new RowBounds(offset, size));
+        questionQueryDTO.setSize(size);
+        questionQueryDTO.setPage(offset);
+        List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
 
