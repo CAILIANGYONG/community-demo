@@ -45,7 +45,9 @@
                         </ul>
                     </li>
                     <li th:if="${session.user ==null}">
+                        <!--<span th:text="${#httpServletRequest.getContextPath()}"></span>-->
                         <a href="https://github.com/login/oauth/authorize?client_id=fb5f8fdb1da299181263&redirect_uri=http://localhost:8886/callback&scope=user&state=1">登录</a>
+                        <!--<a th:href="@{https://github.com/login/oauth/authorize(client_id='fb5f8fdb1da299181263',redirect_uri=${#httpServletRequest.getRequestURI()+'callback'},scope='user',state=1)}">登录</a>-->
                     </li>
 
                 </ul>

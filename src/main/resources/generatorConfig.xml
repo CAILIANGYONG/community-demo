@@ -7,7 +7,7 @@
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
         <jdbcConnection driverClass="org.h2.Driver"
-                        connectionURL="jdbc:h2:E:/xl"
+                        connectionURL="jdbc:h2:~/community"
                         userId="sa"
                         password="123">
         </jdbcConnection>
