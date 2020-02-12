@@ -15,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class CommentController {
@@ -25,6 +27,7 @@ public class CommentController {
     private CommentService commentService;
     @ResponseBody
     @RequestMapping(value="/comment",method = RequestMethod.POST)
+
     public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
                        HttpServletRequest request)
     {
