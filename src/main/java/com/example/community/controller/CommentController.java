@@ -25,18 +25,17 @@ public class CommentController {
     private CommentMapper commentMapper;
     @Autowired
     private CommentService commentService;
+
     @ResponseBody
-    @RequestMapping(value="/comment",method = RequestMethod.POST)
+    @RequestMapping(value = "/comment", method = RequestMethod.POST)
 
     public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
-                       HttpServletRequest request)
-    {
-        User user= (User)request.getSession().getAttribute("user");
-        if(user==null ){
+                       HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
             return ResultDTO.errorof(CustomizeErrorCode.NO_LOGIN);
         }
-        if(commentCreateDTO ==null|| StringUtils.isBlank(commentCreateDTO.getContent()))
-        {
+        if (commentCreateDTO == null || StringUtils.isBlank(commentCreateDTO.getContent())) {
             return ResultDTO.errorof(CustomizeErrorCode.CONTNET_IS_EMPTY);
 
         }
@@ -48,11 +47,12 @@ public class CommentController {
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setCommentator(user.getId());
         comment.setLikeCount(0L);
-        commentService.insert(comment,user);
+        commentService.insert(comment, user);
 
         return ResultDTO.okOf();
 
     }
+
     @ResponseBody
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
     public ResultDTO<List<commentDTO>> comments(@PathVariable(name = "id") Long id) {

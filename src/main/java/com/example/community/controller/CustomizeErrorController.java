@@ -43,12 +43,11 @@ public class CustomizeErrorController implements ErrorController {
                                   Model model) {
         HttpStatus status = getStatus(request);
 
-        if(status.is4xxClientError())
-        {
-            model.addAttribute("message","你请求错了吧，不然换个姿势？？？");
+        if (status.is4xxClientError()) {
+            model.addAttribute("message", "你请求错了吧，不然换个姿势？？？");
         }
-        if(status.is5xxServerError()){
-            model.addAttribute("message","服务器冒烟了");
+        if (status.is5xxServerError()) {
+            model.addAttribute("message", "服务器冒烟了");
 
         }
 

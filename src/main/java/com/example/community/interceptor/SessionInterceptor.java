@@ -21,8 +21,9 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Autowired
     private NotificationService notificationService;   //模型放问题和回复者   故而需要提供service
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Cookie[] cookies = request.getCookies();
+    //spring  mvc   ？？？
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {//页面访问前
+        Cookie[] cookies = request.getCookies();  //用户登录  判断
         if(cookies !=null && cookies.length !=0)//判断cookie  非空
             for (Cookie cookie : cookies) {
                 if(cookie.getName().equals("token")){

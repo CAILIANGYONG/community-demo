@@ -24,7 +24,7 @@ public class NotificationController {
 
     @GetMapping("/notification/{id}")
     public String profile(HttpServletRequest request,
-                          @PathVariable(name="id") Long id
+                          @PathVariable(name = "id") Long id
 
 
     ) {
