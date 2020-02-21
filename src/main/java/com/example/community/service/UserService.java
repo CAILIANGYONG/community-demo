@@ -33,6 +33,7 @@ public class UserService {
             updateUser.setAvartarUrl(user.getAvartarUrl());
             updateUser.setName(user.getName());
             updateUser.setToken(user.getToken());
+            updateUser.setBio(user.getBio());
             UserExample example = new UserExample();
             example.createCriteria()
                     .andIdEqualTo(dbUser.getId());

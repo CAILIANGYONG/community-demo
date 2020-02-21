@@ -56,10 +56,10 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
-
+            user.setBio(githubUser.getBio());
             user.setAvartarUrl(githubUser.getAvatarUrl());
             userService.createOrUpdate(user);
-            response.addCookie(new Cookie("token", token));//token放到cookie里
+            response.addCookie(new Cookie("token", token));//token放到cookie里(当时持久访问操作) 临时通行证
             // request.getSession().setAttribute("user",githubUser);
             return "redirect:/";  //重定向
         } else {
