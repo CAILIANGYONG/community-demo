@@ -61,6 +61,7 @@ public class AuthorizeController {
             userService.createOrUpdate(user);
             response.addCookie(new Cookie("token", token));//token放到cookie里(当时持久访问操作) 临时通行证
             // request.getSession().setAttribute("user",githubUser);
+            // request.getSession().setAttribute("user",githubUser);
             return "redirect:/";  //重定向
         } else {
             log.error("callback get github error,{}", githubUser);
