@@ -5,11 +5,9 @@ import com.alibaba.fastjson.JSON;
 import com.example.community.dto.ResultDTO;
 import com.example.community.exception.CustomizeErrorCode;
 import com.example.community.exception.CustomizeException;
-import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +18,9 @@ import java.io.PrintWriter;
 @ControllerAdvice
 public class CustomizeExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(Exception.class)   // 可查异常和运行时异常的爸爸
    // @ResponseBody
-    ModelAndView handle(Throwable e, Model model,
+    ModelAndView handle(Throwable e, Model model,   //爸爸的爸爸
                   HttpServletRequest request,
                   HttpServletResponse response) {
 
@@ -30,7 +28,7 @@ public class CustomizeExceptionHandler {
         if("application/json".equals(contentType)){
             ResultDTO resultDTO ;
             //返回json
-            if (e instanceof CustomizeException) {
+            if (e instanceof CustomizeException) { //挑属于这里面的异常
                 resultDTO =ResultDTO.errorof((CustomizeException) e);
 
             } else {

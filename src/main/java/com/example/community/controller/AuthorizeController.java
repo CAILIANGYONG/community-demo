@@ -78,8 +78,8 @@ public class AuthorizeController {
     ) {//清除session  清除 cookie
         request.getSession().removeAttribute("user");
         Cookie cookie = new Cookie("token", null);
-        cookie.setMaxAge(0);//覆盖删除法
-        response.addCookie(cookie);
+        cookie.setMaxAge(0);//覆盖删除法   为0浏览器默认 当垃圾处理
+        response.addCookie(cookie); //丢回去
         return "redirect:/";
     }
 

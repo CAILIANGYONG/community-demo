@@ -29,7 +29,7 @@ public class PublishController {
     @Autowired
     private QuestionService questionService;
 
-    @GetMapping("/publish/{id}")
+    @GetMapping("/publish/{id}")  //这是修改问题
     public String edit(@PathVariable(name = "id") Long id,
                        Model model) {
         QuestionDTO question = questionService.getById(id);

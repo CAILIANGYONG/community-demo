@@ -27,6 +27,7 @@ public class SessionInterceptor implements HandlerInterceptor {
         if(cookies !=null && cookies.length !=0)//判断cookie  非空
             for (Cookie cookie : cookies) {
                 if(cookie.getName().equals("token")){
+                    System.out.println(cookie.getMaxAge());
                     String token = cookie.getValue();
                     UserExample userExample = new UserExample();
                     userExample.createCriteria()

@@ -24,7 +24,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class QuestionService {
+public class
+QuestionService {
         @Autowired
     private QuessionMapper quessionMapper;
     @Autowired
